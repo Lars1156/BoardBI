@@ -1,4 +1,5 @@
 const Project = require('../model/project');
+const user = require('../model/user');
 const User = require('../model/user');
 
 
@@ -10,6 +11,10 @@ const createProject = async(req,res)=>{
         if (req.user.role !== 'Admin') {
             return res.status(403).json({ message: 'You do not have permission to create projects.' });
           }
+          if (!projectName || !description || !startDate || !endDate || !assignedTo) {
+            return res.status(400).json({ message: 'Missing required fields' });
+          }
+          
           const newProject = new Project({
             projectName,
             description,
