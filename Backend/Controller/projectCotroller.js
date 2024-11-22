@@ -23,4 +23,6 @@ const createProject = async(req,res)=>{
     } catch (error) {
         
     }
-}
+};
+
+module.exports = {createProject}
